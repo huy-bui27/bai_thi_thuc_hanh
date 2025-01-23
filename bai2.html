@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>BAI 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #roundedScore {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #e8f5e9;
+        }
+    </style>
+</head>
+<body>
+<h1>Hệ thống chấm điểm Codegym</h1>
+
+<p>Nhập điểm của học sinh:</p>
+<input id="scoreInput" max="100" min="0" type="number">
+<button onclick="roundScore()">Round Score</button>
+
+<p id="roundedScore"></p>
+
+<script>
+    function roundScore() {
+        const score = parseInt(document.getElementById("scoreInput").value);
+
+        if (score < 0 || score > 100) {
+            document.getElementById("roundedScore").textContent = "Điểm không hợp lệ. Vui lòng nhập điểm từ 0 đến 100.";
+            return;
+        }
+
+        if (score < 50 || score < 48) {
+            document.getElementById("roundedScore").textContent = `Điểm gốc: ${score}. Học sinh trượt`;
+            return;
+        }
+
+        const nextMultipleOfFive = Math.ceil(score / 5) * 5;
+        const difference = nextMultipleOfFive - score;
+
+        if (difference < 3) {
+            document.getElementById("roundedScore").textContent = `Điểm làm tròn: ${nextMultipleOfFive}`;
+        } else {
+            document.getElementById("roundedScore").textContent = `Điểm gốc: ${score}`;
+        }
+    }
+</script>
+</body>
+</html>

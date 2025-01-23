@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BAI 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Đếm Cặp Số Có Tổng Chia Hết Cho K</h1>
+<label for="arrayInput">Nhập mảng số nguyên (cách nhau bằng dấu phẩy):</label><br>
+<input id="arrayInput" placeholder="Ví dụ: 1,2,3,4,5,6" type="text"><br>
+<label for="kInput">Nhập số nguyên dương k:</label><br>
+<input id="kInput" min="1" required type="number"><br>
+<button onclick="countPairs()">Đếm Cặp</button>
+
+<div class="result" id="result"></div>
+
+<script>
+    function countPairs() {
+        const arrayInput = document.getElementById('arrayInput').value;
+        const k = parseInt(document.getElementById('kInput').value);
+        const arr = arrayInput.split(',').map(Number);
+        let count = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = i + 1; j < arr.length; j++) {
+                if ((arr[i] + arr[j]) % k === 0) {
+                    count++;
+                }
+            }
+        }
+
+        document.getElementById('result').innerText = `Số cặp thỏa mãn: ${count}`;
+    }
+</script>
+</body>
+</html>
+
